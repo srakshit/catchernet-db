@@ -15,21 +15,21 @@ exports.up = function(knex, Promise) {
         }),
         
         knex.schema.createTable('catchers', (table) => {
-            table.integer('user_id').unsigned().references('id').inTable('users');
+            table.integer('user_id').unsigned().unique().references('id').inTable('users');
             table.string('catcher_id').notNullable().unique();
             table.boolean('isActive').notNullable().defaultTo(true);
         }),
         
         knex.schema.createTable('subscribers', (table) => {
-            table.integer('user_id').unsigned().references('id').inTable('users');
+            table.integer('user_id').unsigned().unique().references('id').inTable('users');
             table.string('subscriber_id').notNullable().unique();
             table.string('stripe_customer_id');
             table.boolean('isActive').notNullable().defaultTo(true);
         }),
 				
 				knex.schema.createTable('payments', (table) => {
-            table.string('stripe_customer_id').references('stripe_customer_id').inTable('subscribers');
-            table.integer('amount');
+            table.string('stripe_customer_id').notNullable().unique();
+            table.integer('amount').notNullable();
             table.dateTime('last_paid_date');
             table.dateTime('scheduled_pay_date');
         })

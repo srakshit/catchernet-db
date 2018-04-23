@@ -28,7 +28,7 @@ exports.up = function(knex, Promise) {
         }),
 				
 				knex.schema.createTable('payments', (table) => {
-            table.string('stripe_customer_id');
+            table.string('stripe_customer_id').references('stripe_customer_id').inTable('subscribers');
             table.integer('amount');
             table.dateTime('last_paid_date');
             table.dateTime('scheduled_pay_date');

@@ -51,7 +51,7 @@ module.exports = {
     }
   },
 
-  production: {
+  prod: {
     client: 'pg',
     connection: {
       host: process.env.PG_HOST,
@@ -64,7 +64,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: __dirname + '/migrations'
     }
   }
 };      

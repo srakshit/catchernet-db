@@ -27,7 +27,7 @@ exports.up = function(knex, Promise) {
             table.boolean('isActive').notNullable().defaultTo(true);
         }),
 				
-				knex.schema.createTable('payments', (table) => {
+		knex.schema.createTable('payments', (table) => {
             table.string('stripe_customer_id').notNullable().unique();
             table.integer('amount').notNullable();
             table.dateTime('last_paid_date');

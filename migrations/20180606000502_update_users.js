@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     return Promise.all([
         knex.schema.alterTable('users', (table) => {
             table.string('uid');
+            table.string('county').alter().nullable();
             table.dateTime('created_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
             table.dateTime('updated_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
         })
@@ -22,7 +23,7 @@ exports.up = function(knex, Promise) {
         .then(() => {
             //make uid as notnullable and unique field
             return knex.schema.alterTable('users', (table) => {
-                table.string('uid').alter().notNullable().unique().defaultTo('usr_' + uid());
+                table.string('uid').alter().notNullable().unique();
             })
         }),
         

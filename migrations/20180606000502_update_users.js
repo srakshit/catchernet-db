@@ -30,8 +30,8 @@ exports.up = function(knex, Promise) {
         knex.schema.createTable('catcher_allocation', (table) => {
             table.integer('catcher_id').unsigned().unique().references('id').inTable('users');
             table.integer('subscriber_id').unsigned().unique().references('id').inTable('users');
-            table.dateTime('created_at');
-            table.dateTime('updated_at');
+						table.dateTime('created_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
+            table.dateTime('updated_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
             table.boolean('isActive').notNullable().defaultTo(true);
         })
     ]);

@@ -25,14 +25,6 @@ exports.up = function(knex, Promise) {
             return knex.schema.alterTable('users', (table) => {
                 table.string('uid').alter().notNullable().unique();
             })
-        }),
-        
-        knex.schema.createTable('catcher_allocation', (table) => {
-            table.integer('catcher_id').unsigned().unique().references('id').inTable('users');
-            table.integer('subscriber_id').unsigned().unique().references('id').inTable('users');
-						table.dateTime('created_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
-            table.dateTime('updated_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
-            table.boolean('isActive').notNullable().defaultTo(true);
         })
     ]);
 };
@@ -43,8 +35,6 @@ exports.down = function(knex, Promise) {
             table.dropColumn('uid');
             table.dropColumn('created_at');
             table.dropColumn('updated_at');
-        }),
-
-        knex.schema.dropTable('catcher_allocation'),
+        })
     ]);
 };

@@ -6,8 +6,8 @@ exports.up = function(knex, Promise) {
             table.integer('catcher_id').unsigned().references('id').inTable('users');
             table.integer('subscriber_id').unsigned().references('id').inTable('users');
             table.unique(['catcher_id', 'subscriber_id']);
-			table.dateTime('created_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
-            table.dateTime('updated_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
+			table.dateTime('created_at');
+            table.dateTime('updated_at');
             table.boolean('isActive').notNullable().defaultTo(true);
         })
     ]);

@@ -8,8 +8,8 @@ exports.up = function(knex, Promise) {
         knex.schema.alterTable('users', (table) => {
             table.string('uid');
             table.string('county').alter().nullable();
-            table.dateTime('created_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
-            table.dateTime('updated_at').defaultTo(moment().format('YYYY-MM-DD HH:mm:ss'));
+            table.dateTime('created_at');
+            table.dateTime('updated_at');
         })
         .then(() => {
             //Update uids with default uids

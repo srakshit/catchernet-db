@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
 			table.dateTime('created_at');
             table.dateTime('updated_at');
             table.boolean('isActive').notNullable().defaultTo(true);
-        })
+        });
     ]);
 };
 

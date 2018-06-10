@@ -16,7 +16,11 @@ exports.up = function(knex, Promise) {
             return  knex('users').select('id')
                     .then((rows) => {
                         rows.forEach((row) => {
-                            return knex('users').where('id', row.id).update({uid: 'usr_' + uid()}).then(); 
+                            return knex('users').where('id', row.id).update({
+                                created_at: moment().format('YYYY-MM-DD HH:mm:ss'), 
+                                updated_at: moment().format('YYYY-MM-DD HH:mm:ss'), 
+                                uid: 'usr_' + uid()
+                            }).then();
                         })
                     });
         })
